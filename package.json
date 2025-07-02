@@ -1,0 +1,17 @@
+{
+  "name": "@24el/nexrender-action-fonts",
+  "version": "1.0.3",
+  "description": "Plugin for Nexrender to install fonts",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/24el/nexrender-action-fonts.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "24el",
+  "license": "ISC",
+  "homepage": "https://github.com/24el/nexrender-action-fonts#readme",
+  "dependencies": {}
+}
