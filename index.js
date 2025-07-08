@@ -171,7 +171,7 @@ module.exports = async (job, settings, params, type) => {
                 continue;
             }
 
-            if (!asset.dest.match(/\.(ttf|otf)$/)) {
+            if (!asset.dest.match(/\.(ttf|otf|woff|woff2)$/)) {
                 continue;
             }
 

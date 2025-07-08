@@ -1,6 +1,6 @@
 {
   "name": "@24el/nexrender-action-fonts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Plugin for Nexrender to install fonts",
   "main": "index.js",
   "repository": {
