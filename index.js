@@ -46,9 +46,11 @@ const installWin = async (settings, job, fontpath) => {
         const fontdisplayname = path.basename(fontpath, path.extname(fontpath));
         const names = [`${fontdisplayname} (TrueType)`, `${fontdisplayname}`];
         for (const name of names) {
-            const fontreg = `reg add "HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts" /v "${name}" /t REG_SZ /d "${fontdest}" /f`;
-            settings.logger.log(`[action-fonts] Adding font ${fontdisplayname} to registry...`);
-            execSync(fontreg);
+            const currentUserReg = `reg add "HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts" /v "${name}" /t REG_SZ /d "${fontdest}" /f`;
+            const localMachineReg = `reg add "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts" /v "${name}" /t REG_SZ /d "${fontdest}" /f`;
+            settings.logger.log(`[action-fonts] Adding font ${fontdisplayname} to registries...`);
+            execSync(currentUserReg);
+            execSync(localMachineReg);
         }
     } catch (e) {
         settings.logger.log(`[action-fonts] Error adding font ${fontdest} to registry: ${e.message}`);
@@ -78,9 +80,11 @@ const uninstallWin = async (settings, job, fontpath) => {
     const fontdisplayname = path.basename(fontpath, path.extname(fontpath));
     const names = [`${fontdisplayname} (TrueType)`, `${fontdisplayname}`];
     for (const name of names) {
-        const fontreg = `reg delete "HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts" /v "${name}" /f`;
+        const currentUserReg = `reg delete "HKCU\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts" /v "${name}" /f`;
+        const localMachineReg = `reg delete "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts" /v "${name}" /f`;
         try {
-            execSync(fontreg);
+            execSync(currentUserReg);
+            execSync(localMachineReg);
         } catch (e) {
             settings.logger.log(`[action-fonts] Error removing font ${fontdisplayname} from registry: ${e.message}`);
         }
